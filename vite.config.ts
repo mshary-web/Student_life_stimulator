@@ -2,15 +2,19 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 export default defineConfig({
-  // IMPORTANT: required for GitHub Pages
+  // IMPORTANT: GitHub Pages base path
   base: "/Student_life_stimulator/",
 
-  plugins: [
-    react(),
-    tailwindcss(),
-  ],
+  plugins: [react(), tailwindcss()],
+
+  // Your frontend root
+  root: path.resolve(__dirname, "client"),
 
   resolve: {
     alias: {
@@ -20,10 +24,6 @@ export default defineConfig({
     },
   },
 
-  // Your Vite app entry folder
-  root: path.resolve(__dirname, "client"),
-
-  // Standard output for GitHub Pages
   build: {
     outDir: path.resolve(__dirname, "dist"),
     emptyOutDir: true,
@@ -32,5 +32,5 @@ export default defineConfig({
   server: {
     host: true,
     port: 3000,
-  },
+  }
 });
