@@ -4,6 +4,7 @@ import tailwindcss from "@tailwindcss/vite";
 import path from "node:path";
 
 export default defineConfig({
+  // IMPORTANT: required for GitHub Pages
   base: "/Student_life_stimulator/",
 
   plugins: [
@@ -19,10 +20,17 @@ export default defineConfig({
     },
   },
 
+  // Your Vite app entry folder
   root: path.resolve(__dirname, "client"),
 
+  // Standard output for GitHub Pages
   build: {
     outDir: path.resolve(__dirname, "dist"),
     emptyOutDir: true,
+  },
+
+  server: {
+    host: true,
+    port: 3000,
   },
 });
