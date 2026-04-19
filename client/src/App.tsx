@@ -1,15 +1,14 @@
 import { Toaster } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import NotFound from "@/pages/NotFound";
-import { Route, Switch } from "wouter";
-import { useLocation } from "wouter";
+// 1. Import Router from wouter
+import { Route, Switch, Router as WouterRouter } from "wouter"; 
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
 
-function Router() {
-  const [location] = useLocation();
-
+// 2. Renamed to AppRoutes to avoid confusion
+function AppRoutes() {
   return (
     <Switch>
       <Route path="/" component={Home} />
@@ -25,7 +24,10 @@ function App() {
       <ThemeProvider defaultTheme="light">
         <TooltipProvider>
           <Toaster />
-          <Router />
+          {/* 3. Wrap your routes in WouterRouter and add the base path */}
+          <WouterRouter base="/Student_life_stimulator">
+            <AppRoutes />
+          </WouterRouter>
         </TooltipProvider>
       </ThemeProvider>
     </ErrorBoundary>
