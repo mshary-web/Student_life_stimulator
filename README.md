@@ -97,7 +97,7 @@ MIT
 
 ## Author
 
-Built with Manus
+Built by Mshary
 
 ---
 
