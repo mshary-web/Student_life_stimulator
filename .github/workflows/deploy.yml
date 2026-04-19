@@ -23,11 +23,11 @@ jobs:
         with:
           node-version: 18
 
-      - name: Enable Corepack (pnpm support)
+      - name: Enable Corepack (pnpm)
         run: corepack enable
 
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
 
       - name: Build project
         run: pnpm build
@@ -40,6 +40,10 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
 
     environment:
       name: github-pages
